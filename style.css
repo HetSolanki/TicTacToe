@@ -1,0 +1,139 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    --ceil-size: 100px;
+    --mark-size: calc(var(--ceil-size) * .9);
+}
+
+.board {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: repeat(3, auto);  
+}
+
+.ceil {
+    width: var(--ceil-size);
+    height: var(--ceil-size);
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.ceil.x, .ceil.circle {
+    cursor: not-allowed;
+}
+
+.ceil:nth-child(1),
+.ceil:nth-child(2),
+.ceil:nth-child(3) {
+    border-top: none;
+}
+
+.ceil:nth-child(3n + 1) {
+    border-left: none;
+}
+
+.ceil:nth-child(3n + 3) {
+    border-right: none;
+}
+
+.ceil:nth-child(7),
+.ceil:nth-child(8),
+.ceil:last-child {
+    border-bottom: none;
+}
+
+.ceil.x::after,
+.ceil.x::before,
+.board.x .ceil:not(.x):not(.circle):hover::after,
+.board.x .ceil:not(.x):not(.circle):hover::before{
+    content: '';
+    background-color: black;
+    position: absolute;
+    width: calc(var(--mark-size) * .15);
+    height: var(--mark-size);
+}
+
+.ceil.x::before,
+.board.x .ceil:not(.x):not(.circle):hover::before {
+    transform: rotate(45deg);
+}
+
+.ceil.x::after,
+.board.x .ceil:not(.x):not(.circle):hover::after {
+    transform: rotate(-45deg    );
+}
+
+
+.ceil.circle::after,
+.ceil.circle::before,
+.board.circle .ceil:not(.x):not(.circle):hover::after,
+.board.circle .ceil:not(.x):not(.circle):hover::before{
+    content: '';
+    background-color: black;
+    position: absolute;
+    border-radius: 100%;
+    width: calc(var(--mark-size) * .9);
+    height: calc(var(--mark-size) * .9);
+}
+
+.ceil.circle::after, 
+.board.circle .ceil:not(.x):not(.circle):hover::after{
+    width: calc( var(--mark-size) * .65);
+    height: calc( var(--mark-size) * .65);
+    background-color: white;
+}
+
+.board.x .ceil:not(.x):not(.circle):hover::after,
+.board.x .ceil:not(.x):not(.circle):hover::before,
+.board.circle .ceil:not(.x):not(.circle):hover::before{
+    background-color: lightgray;
+}
+
+.winning-message {
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .9);
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 5rem;
+    flex-direction: column;
+}
+
+.winning-message button {
+    font-size: 2.5rem;
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+    cursor: pointer;
+    border: 3px solid black;
+}
+
+.winning-message button:hover {
+   background-color: lightgrey;
+   color: black; 
+}
+
+.winning-message.show {
+    display: flex;
+}
+
+
+
+
+
