@@ -143,6 +143,13 @@ body {
     justify-content: center;
 }
 
+@media (min-height: 700px) {
+    .game-board {
+        height: 100%;
+        overflow: hidden;
+    }
+}
+
 
 
 
